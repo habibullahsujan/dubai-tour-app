@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import SIdebar from '../Sidebar'
-import Navbar from '../Navbar'
+import SIdebar from './Sidebar'
+import Navbar from './Navbar'
 import { usePathname } from 'next/navigation'
 
 

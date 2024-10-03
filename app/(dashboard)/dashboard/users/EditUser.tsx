@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import Image from 'next/image'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { FaGreaterThan } from 'react-icons/fa6'
 import { IoCheckmarkSharp } from 'react-icons/io5'
 
 const EditUser = () => {
     const form = useForm()
-    const onSubmit = (data) => {
+    const onSubmit = (data:FieldValues) => {
         console.log(data)
     }
     return (

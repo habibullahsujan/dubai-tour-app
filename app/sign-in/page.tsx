@@ -2,12 +2,13 @@
 import CustomSignInForm from '@/components/CustomSignInForm'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { FieldValues } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 
 
 
 const SignInPage = () => {
-    const onSubmit = (data) => {
+    const onSubmit = (data:FieldValues) => {
         console.log(data)
     }
 

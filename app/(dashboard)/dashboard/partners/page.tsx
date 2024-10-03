@@ -142,6 +142,9 @@ const Partners = () => {
           </button>
         </div>
       </div>
+      <div>
+
+      </div>
       <div className='absolute top-24 right-8 bg-white rounded-md shadow-md p-2'>
         {/* {open &&
         //  <AddUser/>

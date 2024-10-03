@@ -8,7 +8,7 @@ import { IoEye } from "react-icons/io5";
 type TFormInput = {
     control: any,
     name: string,
-    label: string,
+    label?: string,
     placeholder: string,
     type?: string,
     className?: string,

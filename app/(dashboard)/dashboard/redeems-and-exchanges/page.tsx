@@ -1,19 +1,20 @@
 'use client'
-import { CiExport } from "react-icons/ci";
-import { IoSearch } from "react-icons/io5";
-import { BsMenuButton } from "react-icons/bs";
-import { HiMenuAlt2 } from "react-icons/hi";
+
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import Card from "./Card";
 import { FaPlus } from "react-icons/fa6";
 import { RedeemAndExchangeTable } from "./RedeemAndExchangeTable";
 import { GiHelicopter } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
+import BoardCard from "@/components/BoardCard";
+import { CiExport } from "react-icons/ci";
+import { IoSearch } from "react-icons/io5";
+import { BsMenuButton } from "react-icons/bs";
+import { HiMenuAlt2 } from "react-icons/hi";
+import { TbFilterEdit } from "react-icons/tb";
+import { cn } from "@/lib/utils";
 
 
 const RedeemsAndExchanges = () => {
-  const [active, setActive] = useState(true)
   const [dataMode, setDataMode] = useState('board')
 
   const redeemsAndExchanges = [
@@ -71,7 +72,39 @@ const RedeemsAndExchanges = () => {
 
   return (
     <section className="">
-
+      <div className='p-4'>
+        <div className="flex items-center justify-between mt-16">
+          <h2 className='font-bold text-primary text-lg py-6'>
+            Users List
+          </h2>
+          <div className="flex items-center justify-center gap-x-2 border rounded-md p-2 border-primary">
+            <CiExport className="size-5" />
+            <span className="text-sm">Export</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-between mt-2">
+          <div className="flex border w-2/6 items-center justify-center py-2 rounded-md pl-1">
+            <IoSearch className="size-7" />
+            <div className="border-l-2 border-gray-300 h-6 ml-2"></div>
+            <input placeholder="Search or type" className="border-none focus:outline-none focus:ring-0 w-full pl-2" />
+          </div>
+          <div className='flex gap-x-3'>
+            <div className="flex rounded-md border">
+              <button className={cn("flex gap-x-2 items-center justify-center  text-white p-2 cursor-pointer bg-primary rounded-l-md")}>
+                <BsMenuButton className="size-7" />
+                <span>Board</span>
+              </button>
+              <button className={cn("flex gap-x-2 items-center justify-center text-primary p-2 cursor-pointer ")}>
+                <HiMenuAlt2 className="size-7" />
+                <span>Table</span>
+              </button>
+            </div>
+            <button className='border p-2 rounded-md shadow-md'>
+              <TbFilterEdit className="size-6" />
+            </button>
+          </div>
+        </div>
+      </div>
       {
         dataMode === 'board' && <div className="mt-8 grid grid-cols-12 gap-4 justify-items-center">
           <div className="flex flex-col gap-y-3 col-span-3 w-[250px]">
@@ -80,7 +113,7 @@ const RedeemsAndExchanges = () => {
             </div>
             {
               receivedType.map((item, index) => (
-                <Card item={item} key={index} />
+                <BoardCard item={item} key={index} />
 
               ))
             }
@@ -95,7 +128,7 @@ const RedeemsAndExchanges = () => {
             </div>
             {
               processingType.map((item, index) => (
-                <Card item={item} key={index} />
+                <BoardCard item={item} key={index} />
 
               ))
             }
@@ -110,7 +143,7 @@ const RedeemsAndExchanges = () => {
             </div>
             {
               bookingType.map((item, index) => (
-                <Card item={item} key={index} />
+                <BoardCard item={item} key={index} />
 
               ))
             }
@@ -125,7 +158,7 @@ const RedeemsAndExchanges = () => {
             </div>
             {
               cancelledType.map((item, index) => (
-                <Card item={item} key={index} />
+                <BoardCard item={item} key={index} />
 
               ))
             }

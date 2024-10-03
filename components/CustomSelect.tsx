@@ -2,16 +2,23 @@ import React from 'react'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
 
-const CustomSelect = ({ control, name, label }) => {
+type TCustomSelect = {
+    name: string,
+    label?: string,
+    control: any,
+
+}
+
+const CustomSelect = ({ control, name, label }: TCustomSelect) => {
     return (
         <FormField
             control={control}
             name={name}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>{label}</FormLabel>
+                    {label && <FormLabel>{label}</FormLabel>}
                     <FormControl>
-                        <Select {...field} onValueChange={(value)=>field.onChange(value)}>
+                        <Select {...field} onValueChange={(value) => field.onChange(value)}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select a fruit" />
                             </SelectTrigger>

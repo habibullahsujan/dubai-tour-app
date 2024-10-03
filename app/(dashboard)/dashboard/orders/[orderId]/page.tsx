@@ -1,35 +1,32 @@
 'use client'
-import React from 'react'
+import { HiOutlineArrowUturnLeft } from "react-icons/hi2";
+import { redeemsAndExchangesTable } from '@/db';
+import { cn } from '@/lib/utils';
+import { Kaushan_Script } from 'next/font/google';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { redeemsAndExchangesTable } from "../../../../../db/index";
-import { FaLocationArrow } from "react-icons/fa6";
-import { Kaushan_Script } from "next/font/google";
-import { cn } from "../../../../../lib/utils";
-import Image from 'next/image'
-import { MdEmail } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
-import { AiOutlineShopping } from "react-icons/ai";
-import { IoIosGift } from "react-icons/io";
-import { TbPhoneCalling } from "react-icons/tb";
-import { BookingStatusSelect } from './BookingStatusSelect';
+import React from 'react'
+import { AiOutlineShopping } from 'react-icons/ai';
+import { FaRegEdit } from 'react-icons/fa';
+import { FaLocationArrow } from 'react-icons/fa6';
+import { IoIosGift } from 'react-icons/io';
+import { MdEmail } from 'react-icons/md';
+import { TbPhoneCalling } from 'react-icons/tb';
+import { BookingStatusSelect } from '../../redeems-and-exchanges/[orderId]/BookingStatusSelect';
 import { Button } from '@/components/ui/button';
-import { IoCheckmarkSharp } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
-import { BsDownload } from "react-icons/bs";
-import ArchiveButton from '@/components/ArchiveButton';
-import DeleteButton from '@/components/DeleteButton';
-
-
+import { IoCheckmarkSharp } from 'react-icons/io5';
+import { BsDownload } from 'react-icons/bs';
+import { RxCross2, RxLoop } from 'react-icons/rx';
+import { CiCalendarDate } from 'react-icons/ci';
 const kaushanScript = Kaushan_Script({ subsets: ["latin"], weight: '400' });
 
-const OrderPage = () => {
+const SingleOrderPage = () => {
     const params = useParams();
     const order = redeemsAndExchangesTable.find((item) => item.id === params.orderId);
 
     const progressData = [
-        { progress: 'Processing', message: 'Order was selected to process by...', dateTime: 'Tuesday 11:29 AM', complete: true },
-        { progress: 'Booked', message: 'Order was booked by...', dateTime: 'Wednesday 11:29 AM', complete: true },
-        { progress: 'Invoice Sent', message: 'The invoice for partner X was sent', dateTime: 'Tuesday 11:29 AM', complete: false },
+        { progress: 'Processing', message: 'Order was selected to process by...Order was selected to process by...Order was selected to process by...', dateTime: 'Tuesday 11:29 AM', complete: true },
+        { progress: 'All Sent', message: 'Order was booked by...', dateTime: 'Wednesday 11:29 AM', complete: true },
         { progress: 'Complete', message: 'The customer X has enjoyed the Experience', dateTime: 'Tuesday 11:29 AM', complete: false },
     ]
 
@@ -39,7 +36,7 @@ const OrderPage = () => {
             <div>
                 <h2 className='font-bold text-primary text-lg py-6'>Redeems & Exchanges - {order?.orderId}</h2>
                 <div className=" gap-x-4 grid grid-cols-12 gap-6">
-                    <div className="border rounded-md shadow-md col-span-8 relative">
+                    <div className="border rounded-md shadow-md col-span-8 relative h-[274px]">
                         <div className='flex'>
                             <div>
                                 <div className='relative'>
@@ -80,11 +77,11 @@ const OrderPage = () => {
                                 <span>PO Box 944881, Meadows 8 - Street 2 Villa 15</span>
                             </div>
                         </div>
-                        <div className='z-40 absolute bottom-0 left-0 rounded-b-lg'>
+                        <div className='z-10 absolute -bottom-4 left-0 rounded-b-lg'>
                             <Image src={'/svg/design-1.svg'} alt='helicopter' height={75} width={54} />
                         </div>
-                        <div className='z-40 absolute bottom-0 left-0 rounded-b-lg'>
-                        <Image src={'/svg/voucher-design-1.svg'} alt='helicopter' height={75} width={54} />
+                        <div className='z-10 absolute -bottom-4 left-0 rounded-b-lg'>
+                            <Image src={'/svg/voucher-design-1.svg'} alt='helicopter' height={75} width={54} />
                         </div>
                     </div>
                     <div className="col-span-4 flex flex-col justify-between gap-y-2">
@@ -92,15 +89,23 @@ const OrderPage = () => {
                             <div className='bg-[#014C4633] p-1 rounded-md text-primary'>                                <AiOutlineShopping className='size-8' />
                             </div>
                             <div className='flex flex-col'>
-                                <h5 className='font-bold text-lg text-primary'>Total Orders</h5>
+                                <h5 className='font-bold text-lg text-primary'>Order Status</h5>
                                 <span>2,000</span>
                             </div>
                         </div>
                         <div className='border shadow-md p-1 flex items-center gap-x-4 rounded-md'>
-                            <div className='bg-[#014C4633] p-1 rounded-md text-primary'>                                <IoIosGift className='size-8' />
+                            <div className='bg-[#014C4633] p-1 rounded-md text-primary'><CiCalendarDate className='size-8' />
                             </div>
                             <div className='flex flex-col'>
-                                <h5 className='font-bold text-lg text-primary'>Total Orders</h5>
+                                <h5 className='font-bold text-lg text-primary'>Order Created Date</h5>
+                                <span>1,000</span>
+                            </div>
+                        </div>
+                        <div className='border shadow-md p-1 flex items-center gap-x-4 rounded-md'>
+                            <div className='bg-[#014C4633] p-1 rounded-md text-primary'><IoIosGift className='size-8' />
+                            </div>
+                            <div className='flex flex-col'>
+                                <h5 className='font-bold text-lg text-primary'>Total Redeem</h5>
                                 <span>1,000</span>
                             </div>
                         </div>
@@ -130,23 +135,22 @@ const OrderPage = () => {
                         </div>
                     </div>
                     <div className='col-span-8 shadow-lg rounded-md border p-2 grid grid-cols-12'>
-
                         <div className='flex flex-col mr-4 col-span-6'>
                             {
                                 progressData.map((item, index) => (
                                     <div className='flex' key={index}>
-                                        <div className='flex flex-col items-center justify-center pr-4'>
+                                        <div className='flex flex-col items-center justify-start pr-4'>
                                             <div className={cn("w-6 h-6 rounded-full mb-1",
                                                 item.progress === 'Processing' && item.complete === true ? 'bg-[#28C76F] border-none ' : 'p-1',
                                                 item.progress === 'Booked' && item.complete === true ? 'bg-[#316AC1] border-none ' : 'p-1',
-                                                item.progress === 'Invoice Sent' && item.complete === true ? 'bg-[#FFB849] border-none ' : 'p-1 border-2 border-primary',
+                                                item.progress === 'All Sent' && item.complete === true ? 'bg-[#316AC1] border-none ' : 'p-1 border-2 border-primary',
                                                 item.progress === 'Complete' && item.complete === true ? 'bg-[#014C46] border-none ' : 'p-1 border-2 border-primary'
                                             )}></div>
-                                            <div className="w-px h-16 bg-[#014C46] mb-1 p-[1px]"></div>
+                                            <div className="w-px h-full bg-[#014C46] mb-1 p-[1px]"></div>
                                         </div>
                                         <div>
                                             <p className='font-bold text-primary text-base'>{item.progress}</p>
-                                            <span className='text-sm'>{item.message}</span>
+                                            <span className='text-xs'>{item.message}</span>
                                         </div>
                                         <p className='text-xs text-nowrap'>{item.dateTime}</p>
                                     </div>
@@ -198,9 +202,16 @@ const OrderPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex gap-x-5 mb-10'>
-                   <ArchiveButton/>
-                   <DeleteButton/>
+                <div className='flex gap-x-5 mb-10 items-center justify-center'>
+                    <div className='flex justify-end mt-10'>
+                        <Button className='border p-2 shadow-sm rounded-md flex gap-x-2' variant={'outline'}><RxLoop className='size-6' />Exchange</Button>
+                    </div>
+                    <div className='flex justify-end mt-10'>
+                        <Button className='border p-2 shadow-sm rounded-md flex gap-x-2' variant={'outline'}><HiOutlineArrowUturnLeft className='size-6' />Refund</Button>
+                    </div>
+                    <div className='flex justify-end mt-10'>
+                        <Button className='border p-2 shadow-sm rounded-md flex gap-x-2' variant={'outline'}><RxCross2 className='size-6' />Cancel</Button>
+                    </div>
                 </div>
             </div>
 
@@ -208,4 +219,4 @@ const OrderPage = () => {
     )
 }
 
-export default OrderPage
+export default SingleOrderPage

@@ -17,20 +17,18 @@ type TSidebarProps = {
 
 const SIdebar = ({ sidebarOpen, setSidebarOpen }: TSidebarProps) => {
     const pathName = usePathname();
-
-
     const sidebarItems = [
         { title: 'Partners', href: '/dashboard/partners', logo: <FaRegHandshake /> },
-        { title: 'Orders', href: '/', logo: <IoCartOutline /> },
-        { title: 'Products', href: '/', logo: <FaBoxOpen /> },
+        { title: 'Orders', href: '/dashboard/orders', logo: <IoCartOutline /> },
+        { title: 'Products', href: '/dashboard/products', logo: <FaBoxOpen /> },
         { title: 'Redeems & Exchanges', href: '/dashboard/redeems-and-exchanges', logo: <MdRedeem /> },
-        { title: 'Customers', href: '/', logo: <TiGroupOutline /> },
+        { title: 'Customers', href: '/dashboard/customers', logo: <TiGroupOutline /> },
         { title: 'Users', href: '/dashboard/users', logo: <FaUser /> },
     ]
     return (
         <section className='flex w-[300px] z-10'>
             <aside className="flex flex-col fixed h-full bg-primary text-white items-center">
-                <Link href={'/'} className='flex items-center justify-center gap-2 py-4'>
+                <Link href={'/'} className='flex items-center justify-center gap-2 py-[22px]'>
                     <Image
                         src="/logo.svg"
                         alt="Logo"

@@ -3,11 +3,11 @@
 
 import React from 'react'
 import { Form } from './ui/form'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import CustomInput from './CustomInput'
 import { Button } from './ui/button'
 
-const CustomSignInForm = ({ onSubmit }) => {
+const CustomSignInForm = ({ onSubmit }:{onSubmit:(data: FieldValues) => void}) => {
   const form = useForm()
   return (
     <Form {...form}>
